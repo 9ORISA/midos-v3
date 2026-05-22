@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: midos-v2
+    runtime: node
+    plan: starter
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: DATA_SOURCE
+        value: json
+      - key: JSON_DB_FILE
+        value: /var/data/db.json
+      - key: JWT_SECRET
+        generateValue: true
+      - key: YOUTUBE_CHANNEL_HANDLE
+        value: '@midosajmi'
+    disk:
+      name: midos-data
+      mountPath: /var/data
+      sizeGB: 1
